@@ -1,0 +1,27 @@
+export const NX_CONFIGJSON = {
+  $schema: "./node_modules/nx/schemas/nx-schema.json",
+  targetDefaults: {
+    build: {
+      dependsOn: ["^build"],
+      outputs: ["{projectRoot}/dist"],
+      cache: true,
+    },
+  },
+  defaultBase: "main",
+  release: {
+    projects: ["packages/*"],
+    projectsRelationship: "fixed",
+  },
+  plugins: [
+    {
+      plugin: "@nx/vite/plugin",
+      options: {
+        buildTargetName: "build",
+        testTargetName: "test",
+        serveTargetName: "serve",
+        previewTargetName: "preview",
+        serveStaticTargetName: "serve-static",
+      },
+    },
+  ],
+};
