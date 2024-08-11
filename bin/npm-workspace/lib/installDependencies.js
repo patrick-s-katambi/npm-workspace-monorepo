@@ -32,6 +32,7 @@ export async function installDependencies(projectPath, projectName) {
         )} Project '${projectName}' is created successfully! 😎`
       );
 
+      console.log("\n");
       console.log(mutedChalkLog("Next steps:\n"));
       console.log(`\t1. ${successChalkLog(`cd ${projectName}`)}\n`);
       console.log(`\t2. Pray!\n`);

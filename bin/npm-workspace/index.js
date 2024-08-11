@@ -98,9 +98,12 @@ figlet("React-Dojo".split("").join(" "), async function (err, data) {
     performNpmInstall
       ? installDependencies(projectPath, projectName)
       : (() => {
+          console.log("\n");
           console.log(mutedChalkLog("Next steps:\n"));
           console.log(`\t1. ${successChalkLog(`cd ${projectName}`)}\n`);
-          console.log(`\t2. npm install --legacy-peer-deps\n`);
+          console.log(
+            `\t2. ${successChalkLog("npm install --legacy-peer-deps")}\n`
+          );
           console.log(`\t3. Pray!\n`);
           console.log(`\t4. You know the rest! Happy coding 🤙\n`);
         })();
