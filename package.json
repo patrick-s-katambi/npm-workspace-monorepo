@@ -48,5 +48,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrick-s-katambi/npm-workspace-monorepo.git"
   }
 }
