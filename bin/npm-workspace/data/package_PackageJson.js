@@ -16,7 +16,7 @@ export const PACKAGE_PACKAGEJSON = {
   },
   keywords: [],
   license: "ISC",
-  description: "Checks whether a number is even",
+  description: "",
   publishConfig: {
     access: "public",
   },

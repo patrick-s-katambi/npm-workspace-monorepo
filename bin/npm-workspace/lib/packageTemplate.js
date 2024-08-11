@@ -12,6 +12,7 @@ export class PackageTemplate extends FileOps {
     super(packagePath);
 
     this.packageName = undefined;
+    this.package1 = undefined;
     this.projectName = undefined;
     /**
      * @type {"template1" | "template2" | undefined}
@@ -31,6 +32,11 @@ export class PackageTemplate extends FileOps {
 
   setPackageName(packageName) {
     this.packageName = packageName;
+    return this;
+  }
+
+  setPackage1(package1) {
+    this.package1 = package1;
     return this;
   }
 
@@ -70,7 +76,7 @@ export class PackageTemplate extends FileOps {
 
   async createViteConfig() {
     let fileName = "vite.config.ts";
-    let content = package_ViteConfig;
+    let content = package_ViteConfig(this.packageName);
     await this.createFile(fileName, content);
   }
 
@@ -96,7 +102,7 @@ export class PackageTemplate extends FileOps {
 
       case "template2": {
         let index = "index.ts";
-        let indexContent = package_Template2;
+        let indexContent = package_Template2(this.projectName, this.package1);
         await this.createFile(index, indexContent);
 
         let libIndex = "lib/index.ts";

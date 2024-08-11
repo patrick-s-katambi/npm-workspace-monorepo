@@ -1,7 +1,15 @@
 {
-  "name": "r-dojo",
+  "name": "react-dojo",
   "type": "module",
-  "version": "1.0.0",
+  "version": "3.0.1",
+  "bin": {
+    "npm-workspace": "./bin/npm-workspace/index.js"
+  },
+  "files": [
+    "bin",
+    ".gitignore",
+    "package.json"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -25,9 +33,20 @@
     "packages/*"
   ],
   "dependencies": {
+    "@inquirer/prompts": "^5.3.8",
     "commander": "^12.1.0",
     "figlet": "^1.7.0",
     "fs-extra": "^11.2.0",
     "ora": "^8.0.1"
+  },
+  "peerDependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "commander": "^12.1.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

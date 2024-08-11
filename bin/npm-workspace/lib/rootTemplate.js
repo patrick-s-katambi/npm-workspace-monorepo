@@ -1,6 +1,7 @@
 import { GIT_IGNORE } from "../data/gitIgnore.js";
 import { NX_CONFIGJSON } from "../data/nxConfigJson.js";
 import { ROOT_PACKAGEJSON } from "../data/root_PackageJson.js";
+import { TS_CONFIGBASEJSON } from "../data/tsConfigBaseJson.js";
 import { FileOps } from "./fileCreator.js";
 
 export class RootTemplate extends FileOps {
@@ -9,6 +10,7 @@ export class RootTemplate extends FileOps {
 
     this.projectName = undefined;
     this.authorName = "";
+    this.package1 = "";
   }
 
   setProjectName(projectName) {
@@ -18,6 +20,11 @@ export class RootTemplate extends FileOps {
 
   setAuthorName(authorName) {
     this.authorName = authorName;
+    return this;
+  }
+
+  setPackage1(package1) {
+    this.package1 = package1;
     return this;
   }
 
@@ -46,6 +53,12 @@ export class RootTemplate extends FileOps {
     await this.createJsonFile(fileName, content);
   }
 
+  async createTsConfigJson() {
+    let fileName = "tsconfig.base.json";
+    let content = TS_CONFIGBASEJSON(this.projectName, this.package1);
+    await this.createJsonFile(fileName, content);
+  }
+
   async createGitIgnore() {
     let fileName = ".gitignore";
     let content = GIT_IGNORE;
@@ -65,5 +78,7 @@ export class RootTemplate extends FileOps {
     await this.createPackageJson();
     // Create nx.json
     await this.createNxJson();
+    // Create tsconfig.base.json
+    await this.createTsConfigJson();
   }
 }

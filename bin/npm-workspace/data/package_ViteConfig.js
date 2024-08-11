@@ -1,4 +1,4 @@
-export const package_ViteConfig = `
+export const package_ViteConfig = (packageName) => `
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: "index.ts",
-      name: "isEven",
+      name: "${packageName}",
       formats: ["es", "cjs"],
       fileName: (format) => (format === "es" ? "index.mjs" : "index.cjs"),
     },
