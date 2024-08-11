@@ -9,7 +9,11 @@ import path from "path";
 import { installDependencies } from "./lib/installDependencies.js";
 import { PackageTemplate } from "./lib/packageTemplate.js";
 import { RootTemplate } from "./lib/rootTemplate.js";
-import { errorChalkLog, mutedChalkLog } from "./utils/chalkLogs.js";
+import {
+  errorChalkLog,
+  mutedChalkLog,
+  successChalkLog,
+} from "./utils/chalkLogs.js";
 
 program
   .name("generator")
@@ -91,7 +95,15 @@ figlet("React-Dojo".split("").join(" "), async function (err, data) {
     const performNpmInstall = await confirm({
       message: "Do you want to install dependencies right now? ",
     });
-    performNpmInstall && installDependencies(projectPath);
+    performNpmInstall
+      ? installDependencies(projectPath, projectName)
+      : (() => {
+          console.log(mutedChalkLog("Next steps:\n"));
+          console.log(`\t1. ${successChalkLog(`cd ${projectName}`)}\n`);
+          console.log(`\t2. npm install --legacy-peer-deps\n`);
+          console.log(`\t3. Pray!\n`);
+          console.log(`\t4. You know the rest! Happy coding 🤙\n`);
+        })();
 
     console.log("\n");
   }

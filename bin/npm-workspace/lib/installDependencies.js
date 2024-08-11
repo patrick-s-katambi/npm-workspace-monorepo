@@ -9,7 +9,7 @@ import {
 
 const execPromise = util.promisify(exec);
 
-export async function installDependencies(projectPath) {
+export async function installDependencies(projectPath, projectName) {
   const spinner = ora("Installing dependencies").start();
 
   try {
