@@ -1,19 +1,15 @@
 #!/usr/bin/env node
 
-import { input, confirm } from "@inquirer/prompts";
+import { confirm, input } from "@inquirer/prompts";
 import { execSync } from "child_process";
 import { program } from "commander";
+import figlet from "figlet";
 import fs from "fs-extra";
 import path from "path";
+import { installDependencies } from "./lib/installDependencies.js";
 import { PackageTemplate } from "./lib/packageTemplate.js";
 import { RootTemplate } from "./lib/rootTemplate.js";
-import figlet from "figlet";
-import {
-  errorChalkLog,
-  mutedChalkLog,
-  successBlockChalkLog,
-} from "./utils/chalkLogs.js";
-import { installDependencies } from "./lib/installDependencies.js";
+import { errorChalkLog, mutedChalkLog } from "./utils/chalkLogs.js";
 
 program
   .name("generator")
@@ -41,6 +37,8 @@ figlet("React-Dojo".split("").join(" "), async function (err, data) {
     }));
   const authorName =
     options?.author ?? (await input({ message: "Enter author name:" }));
+
+  console.log("\n");
 
   async function createProject() {
     const projectPath = path.join(process.cwd(), projectName);
@@ -94,14 +92,6 @@ figlet("React-Dojo".split("").join(" "), async function (err, data) {
       message: "Do you want to install dependencies right now? ",
     });
     performNpmInstall && installDependencies(projectPath);
-
-    console.log("\n");
-
-    console.log(
-      `${successBlockChalkLog(
-        " Success "
-      )} Project ${projectName} created successfully!`
-    );
 
     console.log("\n");
   }
