@@ -5,7 +5,7 @@ import {
   successBlockChalkLog,
   mutedChalkLog,
   successChalkLog,
-} from "../utils/chalkLogs";
+} from "../utils/chalkLogs.js";
 
 const execPromise = util.promisify(exec);
 
